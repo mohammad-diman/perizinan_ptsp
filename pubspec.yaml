@@ -43,6 +43,8 @@ dependencies:
   get: ^4.6.6
   bottom_bar_matu: ^1.3.0
   line_icons: ^2.0.1
+  shared_preferences: ^2.3.2
+  animated_theme_switcher: ^2.0.10
 
 dev_dependencies:
   flutter_test:
