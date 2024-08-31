@@ -27,11 +27,11 @@ class RegisterPage extends StatelessWidget {
             Padding(
               padding: EdgeInsets.all(20),
               child: Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
-                  FadeInUp(duration: Duration(milliseconds: 1000), child: Text("Daftar", style: TextStyle(color: Colors.white, fontSize: 40),)),
+                  FadeInUp(duration: Duration(milliseconds: 1000), child: Text("Daftar", style: TextStyle(color: Colors.white, fontSize: 40, fontWeight: FontWeight.w700),)),
                   SizedBox(height: 10,),
-                  FadeInUp(duration: Duration(milliseconds: 1300), child: Text("Silahkan isi form dibawah ini!", style: TextStyle(color: Colors.white, fontSize: 18),)),
+                  FadeInUp(duration: Duration(milliseconds: 1300), child: Text("Silahkan isi form dibawah ini!", style: TextStyle(color: Colors.white, fontSize: 18, fontWeight: FontWeight.w700),)),
                 ],
               ),
             ),

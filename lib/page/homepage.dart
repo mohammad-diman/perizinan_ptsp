@@ -80,8 +80,8 @@ class HomePage extends StatelessWidget {
                         FadeInLeft(
                           duration: Duration(milliseconds: 1000),
                             child: Text(
-                              "Selamat Datang di Sistem Pelayanan Terpadu Satu Pintu :)",
-                                style: TextStyle(color: Colors.white, fontSize: 20, fontWeight: FontWeight.w900),
+                              "Selamat Datang di Sistem Perizinan Dinas PTSP Bone Bolango :)",
+                                style: TextStyle(color: Colors.white, fontSize: 21, fontWeight: FontWeight.w900),
                         ),
                     )
                   ],

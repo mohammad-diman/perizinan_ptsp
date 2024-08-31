@@ -30,9 +30,9 @@ class LoginPage extends StatelessWidget {
               child: Center(
                 child: Column(
                   children: <Widget>[
-                    FadeInDown(duration: Duration(milliseconds: 1400), child: Text("Sistem Perizinan", style: TextStyle(color: Colors.white, fontSize: 30),)),
-                    FadeInDown(duration: Duration(milliseconds: 1200), child: Text("Dinas PTSP", style: TextStyle(color: Colors.white, fontSize: 30),)),
-                    FadeInDown(duration: Duration(milliseconds: 1000), child: Text("Bone Bolango", style: TextStyle(color: Colors.white, fontSize: 30),)),
+                    FadeInDown(duration: Duration(milliseconds: 1400), child: Text("Sistem Perizinan", style: TextStyle(color: Colors.white, fontSize: 30, fontWeight: FontWeight.w700),)),
+                    FadeInDown(duration: Duration(milliseconds: 1200), child: Text("Dinas PTSP", style: TextStyle(color: Colors.white, fontSize: 30, fontWeight: FontWeight.w700),)),
+                    FadeInDown(duration: Duration(milliseconds: 1000), child: Text("Bone Bolango", style: TextStyle(color: Colors.white, fontSize: 30, fontWeight: FontWeight.w700),)),
                   ],
                 ),
               ),
@@ -48,7 +48,7 @@ class LoginPage extends StatelessWidget {
                     padding: EdgeInsets.all(30),
                     child: Column(
                       children: <Widget>[
-                        FadeInUp(duration: Duration(milliseconds: 1600), child: Text("Login", style: TextStyle(color: Colors.grey, fontSize: 35),)),
+                        FadeInUp(duration: Duration(milliseconds: 1600), child: Text("Login", style: TextStyle(color: Colors.grey, fontSize: 35, fontWeight: FontWeight.w500),)),
                         SizedBox(height: 20,),
                         FadeInUp(duration: Duration(milliseconds: 1400), child: Container(
                           decoration: BoxDecoration(
