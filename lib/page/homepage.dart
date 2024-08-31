@@ -1,19 +1,27 @@
 import 'package:animate_do/animate_do.dart';
+import 'package:b/bar%20graph/bar_graph.dart';
 import 'package:b/page/izinpage.dart';
 import 'package:b/page/profilpage.dart';
+import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:iconsax/iconsax.dart';
 
-class HomePage extends StatefulWidget {
+class HomePage extends StatelessWidget {
   const HomePage({super.key});
 
   @override
-  State<HomePage> createState() => _HomePageState();
-}
-
-class _HomePageState extends State<HomePage> {
-  @override
   Widget build(BuildContext context) {
+
+    List <double> weeklySummary = [
+      88,
+      54,
+      42,
+      45,
+      67,
+      0,
+      0,
+    ];
+
     return Scaffold(
       body: Container(
         width: double.infinity,
@@ -27,7 +35,7 @@ class _HomePageState extends State<HomePage> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
             SizedBox(
-              height: 15,
+              height: 30,
             ),
             Padding(
               padding: EdgeInsets.all(20),
@@ -45,9 +53,9 @@ class _HomePageState extends State<HomePage> {
                                   .then((value) => (value));
                             },
                             child: Text(
-                              "Username",
+                              "Mohammad Diman",
                               style:
-                                  TextStyle(color: Colors.white, fontSize: 17),
+                                  TextStyle(color: Colors.white, fontSize: 16),
                             ))),
                     // SizedBox(width: 120,),
                     FadeInDown(
@@ -62,22 +70,67 @@ class _HomePageState extends State<HomePage> {
                 ),
               ),
             ),
-            SizedBox(height: 70),
+
+            Padding(
+              padding: const EdgeInsets.all(13),
+                child: Container(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        FadeInLeft(
+                          duration: Duration(milliseconds: 1000),
+                            child: Text(
+                              "Selamat Datang di Sistem Pelayanan Terpadu Satu Pintu :)",
+                                style: TextStyle(color: Colors.white, fontSize: 20, fontWeight: FontWeight.w900),
+                        ),
+                    )
+                  ],
+                ),
+              ),
+            ),
+
+            SizedBox(height: 10,),  
+
+            Expanded(
+                child: Container(
+                decoration: BoxDecoration(
+                  color: Colors.white, borderRadius: BorderRadius.circular(11),
+                  boxShadow: [BoxShadow(color: Colors.black54, spreadRadius: 0, blurRadius: 10),],
+                  ),
+                  child: Padding(
+                    padding: EdgeInsets.all(20),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: <Widget>[
+                        FadeInUp(duration: Duration(milliseconds: 1000), child: Text("Grafik Pelayanan", style: TextStyle(color: Colors.black87, fontSize: 15, fontWeight: FontWeight.w700,),)),
+                        SizedBox(height: 12,),
+                        FadeInUp(duration: Duration(milliseconds: 1400),child: Center(child: SizedBox(height: 165,child: BarGraph(weeklySummary: weeklySummary,)))),
+                      ],
+                    ),
+                  ),
+              // ISI KONTEN 1
+
+              
+              // BATAS KONTEN 1
+            )),
+            // Ket. Artikel / batas konten 1:
             Padding(
               padding: const EdgeInsets.all(13),
               child: Container(
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
-                    FadeInDown(duration: Duration(milliseconds: 1000), child: Text(
-                                      "Artikel:",
-                                      style:
-                                          TextStyle(color: Colors.white, fontSize: 17),
-                                    )),
+                    FadeInDown(
+                        duration: Duration(milliseconds: 1000),
+                        child: Text(
+                          "Artikel :",
+                          style: TextStyle(color: Colors.white, fontSize: 15, fontWeight: FontWeight.w700),
+                        )),
                   ],
                 ),
               ),
             ),
+
             Expanded(
               child: Container(
                 decoration: BoxDecoration(
@@ -85,8 +138,8 @@ class _HomePageState extends State<HomePage> {
                     borderRadius: BorderRadius.only(
                         topLeft: Radius.circular(18),
                         topRight: Radius.circular(18))),
-                
-                // Artikel
+
+                // Isi Konten 2
                 child: Container(
                   constraints: const BoxConstraints(maxWidth: 400),
                   child: ListView.builder(
@@ -104,52 +157,64 @@ class _HomePageState extends State<HomePage> {
                           padding: const EdgeInsets.all(8),
                           child: Row(
                             children: [
-                              Expanded(child: Column(
+                              Expanded(
+                                  child: Column(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  Text(item.title,
-                                  style: const TextStyle(fontWeight: FontWeight.bold),
-                                  maxLines: 2,
-                                  overflow: TextOverflow.ellipsis,),
-                                const SizedBox(height: 8,),
-                                Text("${item.author} ${item.postedOn}", style: Theme.of(context).textTheme.bodySmall),
-                                const SizedBox(height: 8,),
-                                 Row(
-                                  mainAxisSize: MainAxisSize.min,
+                                  Text(
+                                    item.title,
+                                    style: const TextStyle(
+                                        fontWeight: FontWeight.bold),
+                                    maxLines: 2,
+                                    overflow: TextOverflow.ellipsis,
+                                  ),
+                                  const SizedBox(
+                                    height: 8,
+                                  ),
+                                  Text("${item.author} ${item.postedOn}",
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .bodySmall),
+                                  const SizedBox(
+                                    height: 8,
+                                  ),
+                                  Row(
+                                    mainAxisSize: MainAxisSize.min,
                                     children: [
-                                       Icons.bookmark_border_rounded,
-                                        Icons.share,
-                                        Icons.more_vert
-                                      ].map((e) {
-                                        return InkWell(
-                                          onTap: () {},
-                                          child: Padding(
-                                            padding: const EdgeInsets.only(right: 8.0),
-                                            child: Icon(e, size: 16),
-                                          ),
-                                        );
-                                      }).toList(),
-                                    )
-                                  ],
-                                )),
-                                Container(
-                                    width: 100,
-                                    height: 100,
-                                    decoration: BoxDecoration(
-                                        color: Colors.grey,
-                                        borderRadius: BorderRadius.circular(8.0),
-                                        image: DecorationImage(
-                                          fit: BoxFit.cover,
-                                          image: NetworkImage(item.imageUrl),
+                                      Icons.bookmark_border_rounded,
+                                      Icons.share,
+                                      Icons.more_vert
+                                    ].map((e) {
+                                      return InkWell(
+                                        onTap: () {},
+                                        child: Padding(
+                                          padding:
+                                              const EdgeInsets.only(right: 8.0),
+                                          child: Icon(e, size: 16),
                                         ),
-                                
-                              ))
+                                      );
+                                    }).toList(),
+                                  )
+                                ],
+                              )),
+                              Container(
+                                  width: 100,
+                                  height: 100,
+                                  decoration: BoxDecoration(
+                                    color: Colors.grey,
+                                    borderRadius: BorderRadius.circular(8.0),
+                                    image: DecorationImage(
+                                      fit: BoxFit.cover,
+                                      image: NetworkImage(item.imageUrl),
+                                    ),
+                                  ))
                             ],
                           ),
                         );
                       }),
                 ),
+                // Batas Konten
               ),
             )
           ],

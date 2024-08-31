@@ -15,22 +15,28 @@ class NavigationMenu extends StatelessWidget {
     final controller = Get.put(NavigationController());
 
     return Scaffold(
-      
+         
       bottomNavigationBar: Obx(
-        
-        () => NavigationBar(
-          indicatorColor: Color.fromRGBO(3, 165, 252, .3),
-          height: 80,
-          elevation: 0,
-          selectedIndex: controller.selectedIndex.value,
-          onDestinationSelected: (index) => controller.selectedIndex.value = index,
-          backgroundColor: Colors.white,
-          
-          destinations: [
-            FadeInLeft(duration: Duration(milliseconds: 1000), child: NavigationDestination(icon: Icon(Iconsax.home), label: 'Beranda'),),
-            FadeInUp(duration: Duration(milliseconds: 1000), child: NavigationDestination(icon: Icon(Iconsax.document), label: 'Izin'),),
-            FadeInRight(duration: Duration(milliseconds: 1000), child: NavigationDestination(icon: Icon(Iconsax.profile_2user), label: 'Profil'),),
-          ],
+        () => Container(
+          decoration: BoxDecoration(
+            color: Colors.white,
+            borderRadius: BorderRadius.only(topLeft: Radius.circular(11), topRight: Radius.circular(11)),
+            boxShadow: [BoxShadow(color: Colors.black38, spreadRadius: 0, blurRadius: 10),],
+          ),
+          child: NavigationBar(
+            indicatorColor: Color.fromRGBO(3, 165, 252, .3),
+            height: 80,
+            elevation: 0,
+            selectedIndex: controller.selectedIndex.value,
+            onDestinationSelected: (index) => controller.selectedIndex.value = index,
+            backgroundColor: Colors.transparent,
+            
+            destinations: [
+              FadeInLeft(duration: Duration(milliseconds: 1000), child: NavigationDestination(icon: Icon(Iconsax.home), label: 'Beranda'),),
+              FadeInUp(duration: Duration(milliseconds: 1000), child: NavigationDestination(icon: Icon(Iconsax.document), label: 'Izin'),),
+              FadeInRight(duration: Duration(milliseconds: 1000), child: NavigationDestination(icon: Icon(Iconsax.profile_2user), label: 'Profil'),),
+            ],
+          ),
         ),
       ),
       body: Obx(() => controller.screens[controller.selectedIndex.value]),
@@ -41,5 +47,5 @@ class NavigationMenu extends StatelessWidget {
 class NavigationController extends GetxController{
   final Rx<int> selectedIndex = 0.obs;
 
-  final screens = [const HomePage(), const IzinPage(),  ProfilPage()];
+  final screens = [ const HomePage(), const IzinPage(),  ProfilPage()];
 }

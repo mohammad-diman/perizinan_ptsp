@@ -45,6 +45,10 @@ dependencies:
   line_icons: ^2.0.1
   shared_preferences: ^2.3.2
   animated_theme_switcher: ^2.0.10
+  syncfusion_flutter_charts: ^26.2.11
+  flutter_charts: ^0.5.2
+  lib: ^0.0.3
+  fl_chart: ^0.69.0
 
 dev_dependencies:
   flutter_test:

@@ -39,7 +39,6 @@ class LoginPage extends StatelessWidget {
             ),
             SizedBox(height: 10),
             Expanded(
-              
               child: Container(
                 decoration: BoxDecoration(
                   color: Colors.white,
