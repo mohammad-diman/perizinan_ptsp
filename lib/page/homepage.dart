@@ -33,9 +33,9 @@ class HomePage extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
-            SizedBox(
-              height: 30,
-            ),
+            // SizedBox(
+            //   height: 10,
+            // ),
             Padding(
               padding: EdgeInsets.all(20),
               child: Container(
@@ -71,7 +71,7 @@ class HomePage extends StatelessWidget {
             ),
 
             Padding(
-              padding: const EdgeInsets.all(13),
+              padding: const EdgeInsets.all(12),
               child: Container(
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.start,
@@ -91,12 +91,9 @@ class HomePage extends StatelessWidget {
               ),
             ),
 
-            SizedBox(
-              height: 10,
-            ),
-
             Expanded(
                 child: Container(
+              margin: EdgeInsets.only(left: 11, right: 11),
               decoration: BoxDecoration(
                 color: Colors.white,
                 borderRadius: BorderRadius.circular(11),
@@ -106,7 +103,7 @@ class HomePage extends StatelessWidget {
                 ],
               ),
               child: Padding(
-                padding: EdgeInsets.all(20),
+                padding: EdgeInsets.all(0),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: <Widget>[
@@ -120,9 +117,6 @@ class HomePage extends StatelessWidget {
                             fontWeight: FontWeight.w700,
                           ),
                         )),
-                    SizedBox(
-                      height: 12,
-                    ),
                     FadeInUp(
                         duration: Duration(milliseconds: 1400),
                         child: Center(
@@ -169,6 +163,7 @@ class HomePage extends StatelessWidget {
 
                 // Isi Konten 2
                 child: Container(
+                  height: 200,
                   constraints: const BoxConstraints(maxWidth: 400),
                   child: ListView.builder(
                       itemCount: _articles.length,
