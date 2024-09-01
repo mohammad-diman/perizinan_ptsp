@@ -11,8 +11,7 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
-    List <double> weeklySummary = [
+    List<double> weeklySummary = [
       88,
       54,
       42,
@@ -73,44 +72,70 @@ class HomePage extends StatelessWidget {
 
             Padding(
               padding: const EdgeInsets.all(13),
-                child: Container(
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                      children: [
-                        FadeInLeft(
-                          duration: Duration(milliseconds: 1000),
-                            child: Text(
-                              "Selamat Datang di Sistem Perizinan Dinas PTSP Bone Bolango :)",
-                                style: TextStyle(color: Colors.white, fontSize: 21, fontWeight: FontWeight.w900),
-                        ),
+              child: Container(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    FadeInLeft(
+                      duration: Duration(milliseconds: 1000),
+                      child: Text(
+                        "Selamat Datang di Sistem Perizinan Dinas PTSP Bone Bolango :)",
+                        style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 21,
+                            fontWeight: FontWeight.w900),
+                      ),
                     )
                   ],
                 ),
               ),
             ),
 
-            SizedBox(height: 10,),  
+            SizedBox(
+              height: 10,
+            ),
 
             Expanded(
                 child: Container(
-                decoration: BoxDecoration(
-                  color: Colors.white, borderRadius: BorderRadius.circular(11),
-                  boxShadow: [BoxShadow(color: Colors.black54, spreadRadius: 0, blurRadius: 10),],
-                  ),
-                  child: Padding(
-                    padding: EdgeInsets.all(20),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: <Widget>[
-                        FadeInUp(duration: Duration(milliseconds: 1000), child: Text("Grafik Pelayanan", style: TextStyle(color: Colors.black87, fontSize: 15, fontWeight: FontWeight.w700,),)),
-                        SizedBox(height: 12,),
-                        FadeInUp(duration: Duration(milliseconds: 1400),child: Center(child: SizedBox(height: 165,child: BarGraph(weeklySummary: weeklySummary,)))),
-                      ],
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(11),
+                boxShadow: [
+                  BoxShadow(
+                      color: Colors.black54, spreadRadius: 0, blurRadius: 10),
+                ],
+              ),
+              child: Padding(
+                padding: EdgeInsets.all(20),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: <Widget>[
+                    FadeInUp(
+                        duration: Duration(milliseconds: 1000),
+                        child: Text(
+                          "Grafik Pelayanan",
+                          style: TextStyle(
+                            color: Colors.black87,
+                            fontSize: 15,
+                            fontWeight: FontWeight.w700,
+                          ),
+                        )),
+                    SizedBox(
+                      height: 12,
                     ),
-                  ),
+                    FadeInUp(
+                        duration: Duration(milliseconds: 1400),
+                        child: Center(
+                            child: SizedBox(
+                                height: 165,
+                                child: BarGraph(
+                                  weeklySummary: weeklySummary,
+                                )))),
+                  ],
+                ),
+              ),
               // ISI KONTEN 1
 
-              
               // BATAS KONTEN 1
             )),
             // Ket. Artikel / batas konten 1:
@@ -124,7 +149,10 @@ class HomePage extends StatelessWidget {
                         duration: Duration(milliseconds: 1000),
                         child: Text(
                           "Artikel :",
-                          style: TextStyle(color: Colors.white, fontSize: 15, fontWeight: FontWeight.w700),
+                          style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 15,
+                              fontWeight: FontWeight.w700),
                         )),
                   ],
                 ),
