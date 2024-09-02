@@ -6,6 +6,7 @@ import 'package:b/page/registerpage.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:retrofit/retrofit.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -21,6 +22,9 @@ class _LoginPageState extends State<LoginPage> {
   final Dio dio = Dio();
   late ApiClient client;
 
+  String? usernameError;
+  String? passwordError;
+
   @override
   void initState() {
     // TODO: implement initState
@@ -32,16 +36,46 @@ class _LoginPageState extends State<LoginPage> {
     final username = usernameController.text;
     final password = passwordController.text;
 
-    late AuthResponse response;
-
     try {
-      print("username: $username");
-      print("password: $password");
-      response = await client.login(username, password);
+      final response = await client.login(username, password);
+
       print("Token: ${response.token}");
-    } catch (e) {
-      print("Login Gagal: $e");
-      // print("response ${response.errors}");
+
+      setState(() {
+        usernameError = null;
+        passwordError = null;
+      });
+
+      Navigator.of(context)
+          .push(MaterialPageRoute(builder: (context) => NavigationMenu()))
+          .then((value) => (value));
+    } on DioException catch (e) {
+      if (e.response != null) {
+        final errorData = e.response?.data;
+
+        if (errorData is Map<String, dynamic> &&
+            errorData.containsKey('errors')) {
+          final errors = errorData['errors'];
+          setState(() {
+            usernameError = null;
+            passwordError = null;
+          });
+
+          errors.forEach((field, messeage) {
+            if (field == "username") {
+              setState(() {
+                usernameError = messeage.join(',');
+              });
+            } else if (field == "password") {
+              setState(() {
+                passwordError = messeage.join(',');
+              });
+            }
+          });
+        }
+      } else {
+        print("Login Gagal: $e");
+      }
     }
   }
 
@@ -144,15 +178,15 @@ class _LoginPageState extends State<LoginPage> {
                                       border: Border(
                                           bottom: BorderSide(
                                               color: Colors.grey.shade200))),
-                                  child: TextField(
+                                  child: TextFormField(
                                     decoration: InputDecoration(
                                         hintText: "Username",
                                         hintStyle:
                                             TextStyle(color: Colors.grey),
-                                        border: InputBorder.none),
-                                        controller: usernameController,
+                                        border: InputBorder.none,
+                                        errorText: usernameError),
+                                    controller: usernameController,
                                   ),
-                                  
                                 ),
                                 Container(
                                   padding: EdgeInsets.all(10),
@@ -160,14 +194,15 @@ class _LoginPageState extends State<LoginPage> {
                                       border: Border(
                                           bottom: BorderSide(
                                               color: Colors.grey.shade200))),
-                                  child: TextField(
+                                  child: TextFormField(
                                     obscureText: true,
                                     decoration: InputDecoration(
                                         hintText: "Password",
                                         hintStyle:
                                             TextStyle(color: Colors.grey),
-                                        border: InputBorder.none),
-                                        controller: passwordController,
+                                        border: InputBorder.none,
+                                        errorText: passwordError),
+                                    controller: passwordController,
                                   ),
                                 ),
                               ],
@@ -181,10 +216,6 @@ class _LoginPageState extends State<LoginPage> {
                           child: MaterialButton(
                             onPressed: () {
                               login();
-                              Navigator.of(context)
-                                  .push(MaterialPageRoute(
-                                      builder: (context) => NavigationMenu()))
-                                  .then((value) => (value));
                             },
                             height: 50,
                             // margin: EdgeInsets.symmetric(horizontal: 50),
