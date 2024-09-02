@@ -3,8 +3,42 @@ import 'package:b/navbar/navbar.dart';
 import 'package:b/page/registerpage.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as myHttp;
 
-class LoginPage extends StatelessWidget {
+class LoginPage extends StatefulWidget {
+  const LoginPage({Key? key}) : super(key: key);
+
+  @override
+  State<LoginPage> createState() => _LoginPageState();
+}
+
+class _LoginPageState extends State<LoginPage> {
+  TextEditingController usernameController = TextEditingController();
+  TextEditingController passwordController = TextEditingController();
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+  }
+
+  Future login(username, password) async {
+    Map<String, String> body = {"username": username, "password": password};
+    final headers = {'Content-Type': 'application/json'};
+    var response = await myHttp
+        .post(Uri.parse('http://192.168.1.14:8000/api/login'), body: body);
+    if (response.statusCode == 401) {
+      ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text("Username atau password anda salah")));
+      return;
+    } else {
+      print('HASIL : ' + response.body);
+      return;
+    }
+
+  }
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

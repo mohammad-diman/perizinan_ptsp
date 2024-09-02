@@ -1,8 +1,6 @@
 import 'package:animate_do/animate_do.dart';
 import 'package:b/bar%20graph/bar_graph.dart';
 import 'package:b/page/izinpage.dart';
-import 'package:b/page/profilpage.dart';
-import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:iconsax/iconsax.dart';
 
@@ -92,13 +90,13 @@ class HomePage extends StatelessWidget {
             ),
 
             Expanded(
-                child: Container(
-              margin: EdgeInsets.only(left: 11, right: 11),
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.circular(11),
-                boxShadow: [
-                  BoxShadow(
+              child: Container(
+                margin: EdgeInsets.only(left: 11, right: 11),
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(11),
+                  boxShadow: [
+                    BoxShadow(
                       color: Colors.black54, spreadRadius: 0, blurRadius: 10),
                 ],
               ),
@@ -128,8 +126,6 @@ class HomePage extends StatelessWidget {
                   ],
                 ),
               ),
-              // ISI KONTEN 1
-
               // BATAS KONTEN 1
             )),
             // Ket. Artikel / batas konten 1:
