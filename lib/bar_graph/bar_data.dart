@@ -1,4 +1,4 @@
-import 'package:b/bar%20graph/individual_bar.dart';
+import 'package:b/bar_graph/individual_bar.dart';
 
 class BarData {
   final double sunAmount;

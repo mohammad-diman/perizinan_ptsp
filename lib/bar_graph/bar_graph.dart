@@ -1,4 +1,4 @@
-import 'package:b/bar%20graph/bar_data.dart';
+import 'package:b/bar_graph/bar_data.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 

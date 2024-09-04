@@ -1,5 +1,5 @@
 import 'package:animate_do/animate_do.dart';
-import 'package:b/bar%20graph/bar_graph.dart';
+import 'package:b/bar_graph/bar_graph.dart';
 import 'package:b/page/izinpage.dart';
 import 'package:flutter/material.dart';
 import 'package:iconsax/iconsax.dart';
@@ -9,6 +9,8 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final String userName = 'Mohammad Diman';
+
     List<double> weeklySummary = [
       88,
       54,
@@ -20,6 +22,14 @@ class HomePage extends StatelessWidget {
     ];
 
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.blue.shade900,
+        title: Text('Halo, $userName', style: TextStyle(color: Colors.white, fontSize: 15, fontWeight: FontWeight.w700),),
+        actions: [
+          IconButton(onPressed: () {}, icon: Icon(Iconsax.notification, color: Colors.white,))
+        ],
+      ),
+
       body: Container(
         width: double.infinity,
         decoration: BoxDecoration(
@@ -31,45 +41,8 @@ class HomePage extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
-            // SizedBox(
-            //   height: 10,
-            // ),
             Padding(
-              padding: EdgeInsets.all(20),
-              child: Container(
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: <Widget>[
-                    FadeInLeft(
-                        duration: Duration(milliseconds: 1000),
-                        child: TextButton(
-                            onPressed: () {
-                              Navigator.of(context)
-                                  .push(MaterialPageRoute(
-                                      builder: (context) => IzinPage()))
-                                  .then((value) => (value));
-                            },
-                            child: Text(
-                              "Mohammad Diman",
-                              style:
-                                  TextStyle(color: Colors.white, fontSize: 16),
-                            ))),
-                    // SizedBox(width: 120,),
-                    FadeInDown(
-                        duration: Duration(milliseconds: 1000),
-                        child: IconButton(
-                            onPressed: () {},
-                            icon: Icon(
-                              Iconsax.notification,
-                              color: Colors.white,
-                            )))
-                  ],
-                ),
-              ),
-            ),
-
-            Padding(
-              padding: const EdgeInsets.all(12),
+              padding: const EdgeInsets.all(13),
               child: Container(
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.start,
@@ -89,14 +62,15 @@ class HomePage extends StatelessWidget {
               ),
             ),
 
+            SizedBox(height: 5,),
             Expanded(
-              child: Container(
-                margin: EdgeInsets.only(left: 11, right: 11),
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(11),
-                  boxShadow: [
-                    BoxShadow(
+                child: Container(
+              margin: EdgeInsets.only(left: 11, right: 11),
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(11),
+                boxShadow: [
+                  BoxShadow(
                       color: Colors.black54, spreadRadius: 0, blurRadius: 10),
                 ],
               ),

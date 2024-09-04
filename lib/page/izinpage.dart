@@ -1,5 +1,7 @@
 import 'package:animate_do/animate_do.dart';
+import 'package:b/form/card_form.dart';
 import 'package:flutter/material.dart';
+import 'package:iconsax/iconsax.dart';
 
 class IzinPage extends StatefulWidget {
   const IzinPage({super.key});
@@ -8,12 +10,45 @@ class IzinPage extends StatefulWidget {
   State<IzinPage> createState() => _IzinPageState();
 }
 
-class _IzinPageState extends State<IzinPage> {
+class _IzinPageState extends State<IzinPage>
+    with SingleTickerProviderStateMixin {
+  late AnimationController _controller;
+
+  @override
+  void initState() {
+    super.initState();
+    _controller = AnimationController(
+      duration: const Duration(milliseconds: 500),
+      vsync: this,
+    );
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+
+  void _onPressed() {
+    if (_controller.isCompleted) {
+      _controller.reverse();
+    } else {
+      _controller.forward();
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
 
     return Scaffold(
+      appBar: AppBar(
+        // toolbarHeight: 65,
+        title: Text('Izin Saya', style: TextStyle(color: Colors.white, fontWeight: FontWeight.w700, fontSize: 22),),
+        backgroundColor: Colors.blue.shade900,
+      ),
+
+
       backgroundColor: Colors.white70,
       body: SizedBox(
         width: size.width,
@@ -21,72 +56,58 @@ class _IzinPageState extends State<IzinPage> {
         child: SingleChildScrollView(
           physics: const BouncingScrollPhysics(),
           child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
+              // FadeInLeft(
+              //   duration: const Duration(milliseconds: 800),
+              //   child: Padding(
+              //     padding: const EdgeInsets.all(20),
+              //     child: Column(
+              //       mainAxisAlignment: MainAxisAlignment.start,
+              //       crossAxisAlignment: CrossAxisAlignment.start,
+              //       children: [
+              //         RichText(
+              //           text: TextSpan(
+              //               text: "Daftar Izin Saya",
+              //               style: TextStyle(
+              //                   color: Colors.black,
+              //                   fontWeight: FontWeight.bold,
+              //                   fontSize: 20)),
+              //         ),
+              //       ],
+              //     ),
+              //   ),
+              // ),
+              SizedBox(
+                height: 5,
+              ),
               FadeInUp(
-                duration: const Duration(milliseconds: 1000),
-                child: Padding(
-                  padding: const EdgeInsets.all(15),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      RichText(
-                        text: TextSpan(
-                            text: "Formulir Permohonan",
-                            style: TextStyle(
-                                color: Colors.black,
-                                fontWeight: FontWeight.bold,
-                                fontSize: 20)),
-                      ),
-                    ], 
+                duration: Duration(milliseconds: 1000),
+                child: Center(
+                  child: SizedBox(
+                    height: 999,
+                    child: CardForm(),
                   ),
                 ),
               ),
-              SizedBox(height: 20,),
-              FadeInUp(duration: Duration(milliseconds: 1000), child: Card(
-                color: Colors.white,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(16)
-                ),
-                elevation: 10,
-                child: Container(
-                  width: 400,
-                  height: 90,
-                  padding: EdgeInsets.all(16),
-                ),
-              ),),
-
-              SizedBox(height: 10,),
-              FadeInUp(duration: Duration(milliseconds: 1200), child: Card(
-                color: Colors.white,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(16)
-                ),
-                elevation: 10,
-                child: Container(
-                  width: 400,
-                  height: 90,
-                  padding: EdgeInsets.all(16),
-                ),
-              ),),
-
-              SizedBox(height: 10,),
-              FadeInUp(duration: Duration(milliseconds: 1300), child: Card(
-                color: Colors.white,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(16)
-                ),
-                elevation: 10,
-                child: Container(
-                  width: 400,
-                  height: 90,
-                  padding: EdgeInsets.all(16),
-                ),
-              ),),
-    
             ],
           ),
+        ),
+      ),
+      // floatingActionButton: FloatingActionButton(onPressed: () {}, child: Icon(Iconsax.add),backgroundColor: Colors.blueAccent.shade100,),
+      floatingActionButton: FloatingActionButton(
+        onPressed: _onPressed,
+        tooltip: 'Rotate',
+        backgroundColor: Color.fromRGBO(3, 165, 252, 1),
+        child: AnimatedBuilder(
+          animation: _controller,
+          child: Icon(Iconsax.add),
+          builder: (context, child) {
+            return Transform.rotate(
+              angle: _controller.value * 6.3,
+              child: child,
+            );
+          },
         ),
       ),
     );
