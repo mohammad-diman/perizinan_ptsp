@@ -1,4 +1,6 @@
 
+import 'package:b/navbar/navbar.dart';
+import 'package:b/page/izinpage.dart';
 import 'package:b/page/loginpage.dart';
 import 'package:flutter/material.dart';
 
@@ -13,7 +15,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: ThemeData(scaffoldBackgroundColor: Colors.white),
-      home: LoginPage(),
+      home: NavigationMenu(),
     );
   }
 }

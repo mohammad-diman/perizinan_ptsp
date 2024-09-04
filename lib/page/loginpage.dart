@@ -1,12 +1,11 @@
 import 'package:animate_do/animate_do.dart';
 import 'package:b/client/apiclient.dart';
-import 'package:b/model/authresponse.dart';
 import 'package:b/navbar/navbar.dart';
 import 'package:b/page/registerpage.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:retrofit/retrofit.dart';
+
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);

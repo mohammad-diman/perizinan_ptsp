@@ -39,10 +39,52 @@ class _IzinPageState extends State<IzinPage> {
                                 fontWeight: FontWeight.bold,
                                 fontSize: 20)),
                       ),
-                    ],
+                    ], 
                   ),
                 ),
               ),
+              SizedBox(height: 20,),
+              FadeInUp(duration: Duration(milliseconds: 1000), child: Card(
+                color: Colors.white,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(16)
+                ),
+                elevation: 10,
+                child: Container(
+                  width: 400,
+                  height: 90,
+                  padding: EdgeInsets.all(16),
+                ),
+              ),),
+
+              SizedBox(height: 10,),
+              FadeInUp(duration: Duration(milliseconds: 1200), child: Card(
+                color: Colors.white,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(16)
+                ),
+                elevation: 10,
+                child: Container(
+                  width: 400,
+                  height: 90,
+                  padding: EdgeInsets.all(16),
+                ),
+              ),),
+
+              SizedBox(height: 10,),
+              FadeInUp(duration: Duration(milliseconds: 1300), child: Card(
+                color: Colors.white,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(16)
+                ),
+                elevation: 10,
+                child: Container(
+                  width: 400,
+                  height: 90,
+                  padding: EdgeInsets.all(16),
+                ),
+              ),),
+    
             ],
           ),
         ),

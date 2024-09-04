@@ -3,7 +3,7 @@
 //     final AuthResponse = AuthResponseFromJson(jsonString);
 
 import 'dart:convert';
-import 'dart:ffi';
+
 
 AuthResponse authResponseFromJson(String str) =>
     AuthResponse.fromJson(json.decode(str));
