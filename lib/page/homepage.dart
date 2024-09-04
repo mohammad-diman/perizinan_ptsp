@@ -1,6 +1,6 @@
 import 'package:animate_do/animate_do.dart';
 import 'package:b/bar_graph/bar_graph.dart';
-import 'package:b/page/izinpage.dart';
+import 'package:b/model/user.dart';
 import 'package:flutter/material.dart';
 import 'package:iconsax/iconsax.dart';
 
@@ -9,8 +9,7 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final String userName = 'Mohammad Diman';
-
+    
     List<double> weeklySummary = [
       88,
       54,
@@ -23,12 +22,26 @@ class HomePage extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
+        automaticallyImplyLeading: false,
         backgroundColor: Colors.blue.shade900,
-        title: Text('Halo, $userName', style: TextStyle(color: Colors.white, fontSize: 15, fontWeight: FontWeight.w700),),
-        actions: [
-          IconButton(onPressed: () {}, icon: Icon(Iconsax.notification, color: Colors.white,))
+        title: ValueListenableBuilder<String>(
+          valueListenable: UserState().nama, 
+          builder: (context, nama, child) {
+            return Text("Halo, " + "$nama", style: TextStyle(color: Colors.white, fontSize: 15, fontWeight: FontWeight.w600),);
+          },
+          ),
+        
+        actions: <Widget>[
+          IconButton(
+              onPressed: () {},
+              icon: Icon(
+                Iconsax.notification,
+                color: Colors.white,
+              ))
         ],
-      ),
+    ),
+      
+      
 
       body: Container(
         width: double.infinity,
@@ -62,7 +75,9 @@ class HomePage extends StatelessWidget {
               ),
             ),
 
-            SizedBox(height: 5,),
+            SizedBox(
+              height: 5,
+            ),
             Expanded(
                 child: Container(
               margin: EdgeInsets.only(left: 11, right: 11),

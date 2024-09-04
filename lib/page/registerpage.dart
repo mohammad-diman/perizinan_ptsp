@@ -1,4 +1,5 @@
 import 'package:animate_do/animate_do.dart';
+import 'package:b/navbar/navbar.dart';
 import 'package:b/page/loginpage.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -133,7 +134,7 @@ class RegisterPage extends StatelessWidget {
                             FadeInUp(duration: Duration(milliseconds: 1700), child: TextButton(onPressed: () {
                               Navigator.of(context)
                                 .push(MaterialPageRoute(
-                                builder: (context) => LoginPage()))
+                                builder: (context) => NavigationMenu()))
                                 .then((value) => (value));
                             }, child: Text("Login Sekarang", style: TextStyle(color: Colors.lightBlue)))),
                             ),

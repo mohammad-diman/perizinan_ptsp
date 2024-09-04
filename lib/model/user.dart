@@ -1,11 +1,22 @@
-class User {
-  final String imagePath;
-  final String name;
-  final String email;
+import 'package:flutter/foundation.dart';
 
-  const User({
-    required this.imagePath,
-    required this.name,
-    required this.email,
-  });
+class UserState {
+  static final UserState _instance = UserState._internal();
+
+  factory UserState() {
+    return _instance;
+  }
+
+  UserState._internal();
+
+  ValueNotifier<String> nama = ValueNotifier<String>('Nama Anda');
+  ValueNotifier<String> alamat = ValueNotifier<String>('Alamat Anda');
+
+  void updateName(String newNama) {
+    nama.value = newNama;
+  }
+
+  void updateAlamat(String newAlamat) {
+    alamat.value = newAlamat;
+  }
 }

@@ -43,7 +43,7 @@ class _IzinPageState extends State<IzinPage>
 
     return Scaffold(
       appBar: AppBar(
-        // toolbarHeight: 65,
+        automaticallyImplyLeading: false,
         title: Text('Izin Saya', style: TextStyle(color: Colors.white, fontWeight: FontWeight.w700, fontSize: 22),),
         backgroundColor: Colors.blue.shade900,
       ),
@@ -58,26 +58,6 @@ class _IzinPageState extends State<IzinPage>
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              // FadeInLeft(
-              //   duration: const Duration(milliseconds: 800),
-              //   child: Padding(
-              //     padding: const EdgeInsets.all(20),
-              //     child: Column(
-              //       mainAxisAlignment: MainAxisAlignment.start,
-              //       crossAxisAlignment: CrossAxisAlignment.start,
-              //       children: [
-              //         RichText(
-              //           text: TextSpan(
-              //               text: "Daftar Izin Saya",
-              //               style: TextStyle(
-              //                   color: Colors.black,
-              //                   fontWeight: FontWeight.bold,
-              //                   fontSize: 20)),
-              //         ),
-              //       ],
-              //     ),
-              //   ),
-              // ),
               SizedBox(
                 height: 5,
               ),
