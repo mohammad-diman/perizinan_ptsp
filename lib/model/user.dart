@@ -1,3 +1,5 @@
+import 'dart:ffi';
+
 import 'package:flutter/foundation.dart';
 
 class UserState {
@@ -11,7 +13,7 @@ class UserState {
 
   ValueNotifier<String> nama = ValueNotifier<String>('Nama Anda');
   ValueNotifier<String> alamat = ValueNotifier<String>('Alamat Anda');
-  ValueNotifier<String> gambar = ValueNotifier<String>('gambar');
+  ValueNotifier<String> telepon = ValueNotifier<String>("Nomor Telepon");
 
   void updateName(String newNama) {
     nama.value = newNama;
@@ -21,7 +23,7 @@ class UserState {
     alamat.value = newAlamat;
   }
 
-  void updateGambar(String newGambar) {
-    gambar.value = newGambar;
+  void updateGambar(String newTelepon) {
+    telepon.value = newTelepon;
   }
 }

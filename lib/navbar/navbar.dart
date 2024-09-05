@@ -15,11 +15,6 @@ class NavigationMenu extends StatelessWidget {
     final controller = Get.put(NavigationController());
 
     return Scaffold(
-      // appBar: AppBar(
-      //   toolbarHeight: 3,
-      //   backgroundColor: Colors.blue.shade900,
-      // ),
-         
       bottomNavigationBar: Obx(
         () => Container(
           decoration: BoxDecoration(
