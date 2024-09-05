@@ -77,7 +77,7 @@ class _IzinPageState extends State<IzinPage>
       // floatingActionButton: FloatingActionButton(onPressed: () {}, child: Icon(Iconsax.add),backgroundColor: Colors.blueAccent.shade100,),
       floatingActionButton: FloatingActionButton(
         onPressed: _onPressed,
-        tooltip: 'Rotate',
+        tooltip: 'Buat Izin Baru',
         backgroundColor: Color.fromRGBO(3, 165, 252, 1),
         child: AnimatedBuilder(
           animation: _controller,

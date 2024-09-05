@@ -11,6 +11,7 @@ class UserState {
 
   ValueNotifier<String> nama = ValueNotifier<String>('Nama Anda');
   ValueNotifier<String> alamat = ValueNotifier<String>('Alamat Anda');
+  ValueNotifier<String> gambar = ValueNotifier<String>('gambar');
 
   void updateName(String newNama) {
     nama.value = newNama;
@@ -18,5 +19,9 @@ class UserState {
 
   void updateAlamat(String newAlamat) {
     alamat.value = newAlamat;
+  }
+
+  void updateGambar(String newGambar) {
+    gambar.value = newGambar;
   }
 }
