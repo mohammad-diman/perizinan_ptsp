@@ -9,7 +9,7 @@ import 'package:image_picker/image_picker.dart';
 import 'package:path_provider/path_provider.dart';
 
 class ProfilPage extends StatefulWidget {
-  const ProfilPage({Key? key}) : super(key: key);
+  const ProfilPage({super.key});
 
   @override
   State<ProfilPage> createState() => _ProfilPageState();
@@ -17,8 +17,8 @@ class ProfilPage extends StatefulWidget {
 
 class _ProfilPageState extends State<ProfilPage>
     with SingleTickerProviderStateMixin {
-  String _nama = 'Nama Anda';
-  String _alamat = 'Alamat Anda';
+  final String _nama = 'Nama Anda';
+  final String _alamat = 'Alamat Anda';
 
   late AnimationController _controller;
 
@@ -83,7 +83,7 @@ class _ProfilPageState extends State<ProfilPage>
         backgroundColor: _getAvatarColor(name), // Warna background dinamis
         child: Text(
           firstLetter,
-          style: TextStyle(fontSize: 40, color: Colors.white),
+          style: const TextStyle(fontSize: 40, color: Colors.white),
         ),
       );
     }
@@ -108,23 +108,15 @@ class _ProfilPageState extends State<ProfilPage>
     super.dispose();
   }
 
-  void _onPressed() {
-    if (_controller.isCompleted) {
-      _controller.reverse();
-    } else {
-      _controller.forward();
-    }
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false,
-        title: Text(
+        title: const Text(
           'Profil',
           style: TextStyle(
-              color: Colors.white, fontWeight: FontWeight.w600, fontSize: 22),
+              color: Colors.white, fontWeight: FontWeight.w600, fontSize: 18),
         ),
         backgroundColor: Colors.blue.shade900,
       ),
@@ -144,8 +136,8 @@ class _ProfilPageState extends State<ProfilPage>
                       mainAxisSize: MainAxisSize.min,
                       children: [
                         ListTile(
-                          leading: Icon(Icons.photo_library),
-                          title: Text('Pilih dari Galeri'),
+                          leading: const Icon(Icons.photo_library),
+                          title: const Text('Pilih dari Galeri'),
                           onTap: () {
                             Navigator.pop(context);
                             _pickImage();
@@ -153,8 +145,8 @@ class _ProfilPageState extends State<ProfilPage>
                         
                         ),
                         ListTile(
-                          leading: Icon(Iconsax.camera),
-                          title: Text('Ambil Gambar Baru'),
+                          leading: const Icon(Iconsax.camera),
+                          title: const Text('Ambil Gambar Baru'),
                           onTap: () {
                             Navigator.pop(context);
                             _takePicture();
@@ -170,19 +162,19 @@ class _ProfilPageState extends State<ProfilPage>
                       return _buildAvatar(nama);
                     }),
               ),
-              SizedBox(height: 20),
+              const SizedBox(height: 20),
               ValueListenableBuilder<String>(
                   valueListenable: UserState().nama,
                   builder: (context, nama, child) {
                     return Text(nama,
-                        style: TextStyle(
+                        style: const TextStyle(
                             fontSize: 24, fontWeight: FontWeight.bold));
                   }),
-              SizedBox(height: 10),
+              const SizedBox(height: 10),
               ValueListenableBuilder<String>(
                   valueListenable: UserState().alamat,
                   builder: (context, alamat, child) {
-                    return Text('Alamat: ' + alamat,
+                    return Text('Alamat: $alamat',
                         style: TextStyle(
                             fontSize: 18, color: Colors.grey.shade700));
                   }),
@@ -209,10 +201,10 @@ class _ProfilPageState extends State<ProfilPage>
           }
         },
         tooltip: 'Pengaturan Profil',
-        backgroundColor: Color.fromRGBO(3, 165, 252, 1),
+        backgroundColor: const Color.fromRGBO(3, 165, 252, 1),
         child: AnimatedBuilder(
           animation: _controller,
-          child: Icon(Iconsax.setting),
+          child: const Icon(Iconsax.setting, color: Colors.white,),
           builder: (context, child) {
             return Transform.rotate(
               angle: _controller.value * 6.3,

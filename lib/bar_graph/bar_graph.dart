@@ -23,9 +23,9 @@ class BarGraph extends StatelessWidget {
       BarChartData(
         maxY: 100,
         minY: 0,
-        gridData: FlGridData(show: false),
+        gridData: const FlGridData(show: false),
         borderData: FlBorderData(show: false),
-        titlesData: FlTitlesData(
+        titlesData: const FlTitlesData(
           show: true,
           topTitles: AxisTitles(sideTitles: SideTitles(showTitles: false)),
           leftTitles: AxisTitles(sideTitles: SideTitles(showTitles: false)),
@@ -115,5 +115,5 @@ Widget getBottomTitles(double value, TitleMeta meta) {
       break;
   }
 
-  return SideTitleWidget(child: text, axisSide: meta.axisSide);
+  return SideTitleWidget(axisSide: meta.axisSide, child: text);
 }

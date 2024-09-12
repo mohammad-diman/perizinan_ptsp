@@ -1,9 +1,4 @@
-// To parse this JSON data, do
-//
-//     final AuthResponse = AuthResponseFromJson(jsonString);
-
 import 'dart:convert';
-
 
 AuthResponse authResponseFromJson(String str) =>
     AuthResponse.fromJson(json.decode(str));

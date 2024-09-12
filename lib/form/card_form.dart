@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
 class CardForm extends StatelessWidget {
+  const CardForm({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -22,18 +24,19 @@ class CardForm extends StatelessWidget {
                   alignment: Alignment.centerLeft,
                   width: 400,
                   height: 100,
-                  padding: EdgeInsets.all(16),
-                  child: Text(
-                        'Formulir A',
-                        style: TextStyle(
-                          color: Colors.black,
-                        ),
-                      ),
+                  padding: const EdgeInsets.all(16),
+                  child: const Text(
+                    'Penelitian A',
+                    style: TextStyle(
+                      color: Colors.black,
+                    ),
                   ),
                 ),
               ),
-
-            SizedBox(height: 10,),
+            ),
+            const SizedBox(
+              height: 10,
+            ),
             InkWell(
               onTap: () {
                 print('Card 2 ditekan!');
@@ -48,11 +51,11 @@ class CardForm extends StatelessWidget {
                   alignment: Alignment.centerLeft,
                   width: 400,
                   height: 100,
-                  padding: EdgeInsets.all(16),
-                  child: Row(
+                  padding: const EdgeInsets.all(16),
+                  child: const Row(
                     children: [
                       Text(
-                        'Formulir B',
+                        'Penelitian B',
                         style: TextStyle(
                           color: Colors.black,
                         ),
@@ -62,8 +65,9 @@ class CardForm extends StatelessWidget {
                 ),
               ),
             ),
-
-             SizedBox(height: 10,),
+            const SizedBox(
+              height: 10,
+            ),
             InkWell(
               onTap: () {
                 print('Card 3 ditekan!');
@@ -78,11 +82,11 @@ class CardForm extends StatelessWidget {
                   alignment: Alignment.centerLeft,
                   width: 400,
                   height: 100,
-                  padding: EdgeInsets.all(16),
-                  child: Row(
+                  padding: const EdgeInsets.all(16),
+                  child: const Row(
                     children: [
                       Text(
-                        'Formulir C',
+                        'Penelitian C',
                         style: TextStyle(
                           color: Colors.black,
                         ),
@@ -92,8 +96,9 @@ class CardForm extends StatelessWidget {
                 ),
               ),
             ),
-
-            SizedBox(height: 10,),
+            const SizedBox(
+              height: 10,
+            ),
             InkWell(
               onTap: () {
                 print('Card 4 ditekan!');
@@ -108,11 +113,11 @@ class CardForm extends StatelessWidget {
                   alignment: Alignment.centerLeft,
                   width: 400,
                   height: 100,
-                  padding: EdgeInsets.all(16),
-                  child: Row(
+                  padding: const EdgeInsets.all(16),
+                  child: const Row(
                     children: [
                       Text(
-                        'Formulir D',
+                        'Penelitian D',
                         style: TextStyle(
                           color: Colors.black,
                         ),
@@ -122,8 +127,9 @@ class CardForm extends StatelessWidget {
                 ),
               ),
             ),
-
-             SizedBox(height: 10,),
+            const SizedBox(
+              height: 10,
+            ),
             InkWell(
               onTap: () {
                 print('Card 5 ditekan!');
@@ -138,11 +144,11 @@ class CardForm extends StatelessWidget {
                   alignment: Alignment.centerLeft,
                   width: 400,
                   height: 100,
-                  padding: EdgeInsets.all(16),
-                  child: Row(
+                  padding: const EdgeInsets.all(16),
+                  child: const Row(
                     children: [
                       Text(
-                        'Formulir E',
+                        'Penelitian E',
                         style: TextStyle(
                           color: Colors.black,
                         ),
@@ -152,8 +158,9 @@ class CardForm extends StatelessWidget {
                 ),
               ),
             ),
-
-             SizedBox(height: 10,),
+            const SizedBox(
+              height: 10,
+            ),
             InkWell(
               onTap: () {
                 print('Card 6 ditekan!');
@@ -168,11 +175,11 @@ class CardForm extends StatelessWidget {
                   alignment: Alignment.centerLeft,
                   width: 400,
                   height: 100,
-                  padding: EdgeInsets.all(16),
-                  child: Row(
+                  padding: const EdgeInsets.all(16),
+                  child: const Row(
                     children: [
                       Text(
-                        'Formulir F',
+                        'Penelitian F',
                         style: TextStyle(
                           color: Colors.black,
                         ),
@@ -182,9 +189,9 @@ class CardForm extends StatelessWidget {
                 ),
               ),
             ),
-           
-
-            SizedBox(height: 10,),
+            const SizedBox(
+              height: 10,
+            ),
             InkWell(
               onTap: () {
                 print('Card 7 ditekan!');
@@ -198,11 +205,11 @@ class CardForm extends StatelessWidget {
                 child: Container(
                   width: 400,
                   height: 100,
-                  padding: EdgeInsets.all(16),
-                  child: Row(
+                  padding: const EdgeInsets.all(16),
+                  child: const Row(
                     children: [
                       Text(
-                        'Formulir G',
+                        'Penelitian G',
                         style: TextStyle(
                           color: Colors.black,
                         ),

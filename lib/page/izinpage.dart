@@ -1,5 +1,6 @@
 import 'package:animate_do/animate_do.dart';
 import 'package:b/form/card_form.dart';
+import 'package:b/form/jenis_surat.dart';
 import 'package:flutter/material.dart';
 import 'package:iconsax/iconsax.dart';
 
@@ -44,11 +45,13 @@ class _IzinPageState extends State<IzinPage>
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false,
-        title: Text('Izin Saya', style: TextStyle(color: Colors.white, fontWeight: FontWeight.w700, fontSize: 22),),
+        title: const Text(
+          'Izin Saya',
+          style: TextStyle(
+              color: Colors.white, fontWeight: FontWeight.w700, fontSize: 18),
+        ),
         backgroundColor: Colors.blue.shade900,
       ),
-
-
       backgroundColor: Colors.white70,
       body: SizedBox(
         width: size.width,
@@ -58,14 +61,14 @@ class _IzinPageState extends State<IzinPage>
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              SizedBox(
+              const SizedBox(
                 height: 5,
               ),
               FadeInUp(
-                duration: Duration(milliseconds: 1000),
-                child: Center(
+                duration: const Duration(milliseconds: 1000),
+                child: const Center(
                   child: SizedBox(
-                    height: 999,
+                    height: 1000,
                     child: CardForm(),
                   ),
                 ),
@@ -74,14 +77,21 @@ class _IzinPageState extends State<IzinPage>
           ),
         ),
       ),
-      // floatingActionButton: FloatingActionButton(onPressed: () {}, child: Icon(Iconsax.add),backgroundColor: Colors.blueAccent.shade100,),
       floatingActionButton: FloatingActionButton(
-        onPressed: _onPressed,
+        onPressed: ()  {
+            Navigator.of(context)
+            .push(MaterialPageRoute(
+            builder: (context) => const JenisSurat()))
+            .then((value) => (value));
+      },
         tooltip: 'Buat Izin Baru',
-        backgroundColor: Color.fromRGBO(3, 165, 252, 1),
+        backgroundColor: const Color.fromRGBO(3, 165, 252, 1),
         child: AnimatedBuilder(
           animation: _controller,
-          child: Icon(Iconsax.add),
+          child: const Icon(
+            Iconsax.add,
+            color: Colors.white,
+          ),
           builder: (context, child) {
             return Transform.rotate(
               angle: _controller.value * 6.3,

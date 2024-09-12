@@ -1,16 +1,17 @@
+// ignore_for_file: library_private_types_in_public_api, non_constant_identifier_names
+
 import 'dart:io';
 
 import 'package:b/model/user.dart';
 import 'package:flutter/material.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:b/model/user.dart';
 
 class EditProfilePage extends StatefulWidget {
   final String nama;
   final String alamat;
 
-  EditProfilePage({required this.nama, required this.alamat});
+  const EditProfilePage({super.key, required this.nama, required this.alamat});
 
   @override
   _EditProfilePageState createState() => _EditProfilePageState();
@@ -81,7 +82,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
         backgroundColor: _getAvatarColor(name), // Warna background dinamis
         child: Text(
           firstLetter,
-          style: TextStyle(fontSize: 40, color: Colors.white),
+          style: const TextStyle(fontSize: 40, color: Colors.white),
         ),
       );
     }
@@ -105,8 +106,9 @@ class _EditProfilePageState extends State<EditProfilePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        iconTheme: const IconThemeData(color: Colors.white),
         backgroundColor: Colors.blue.shade900,
-        title: Text(
+        title: const Text(
           'Pengaturan Profil',
           style: TextStyle(
               color: Colors.white, fontWeight: FontWeight.w600, fontSize: 22),
@@ -127,16 +129,16 @@ class _EditProfilePageState extends State<EditProfilePage> {
                               mainAxisSize: MainAxisSize.min,
                               children: [
                                 ListTile(
-                                  leading: Icon(Icons.photo_library),
-                                  title: Text('Pilih dari galeri'),
+                                  leading: const Icon(Icons.photo_library),
+                                  title: const Text('Pilih dari galeri'),
                                   onTap: () {
                                     Navigator.pop(context);
                                     _pickImage();
                                   },
                                 ),
                                 ListTile(
-                                  leading: Icon(Iconsax.camera),
-                                  title: Text('Ambil Gambar Baru'),
+                                  leading: const Icon(Iconsax.camera),
+                                  title: const Text('Ambil Gambar Baru'),
                                   onTap: () {
                                     Navigator.pop(context);
                                     _takePicture(); 
@@ -151,31 +153,31 @@ class _EditProfilePageState extends State<EditProfilePage> {
                       return _buildAvatar(nama);
                     }),
             ),
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
             TextField(
               controller: _namaController,
-              decoration: InputDecoration(
+              decoration: const InputDecoration(
                 labelText: 'Nama',
                 border: OutlineInputBorder(),
               ),
             ),
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
             TextField(
               controller: _alamatController,
-              decoration: InputDecoration(
+              decoration: const InputDecoration(
                 labelText: 'Alamat',
                 border: OutlineInputBorder(),
               ),
             ),
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
             ElevatedButton(
               onPressed: _saveProfile,
-              child: Text(
-                'Simpan',
-                style: TextStyle(color: Colors.white),
-              ),
               style: ElevatedButton.styleFrom(
                 backgroundColor: Colors.blue,
+              ),
+              child: const Text(
+                'Simpan',
+                style: TextStyle(color: Colors.white),
               ),
             ),
           ],

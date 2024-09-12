@@ -1,14 +1,14 @@
+// ignore_for_file: prefer_const_literals_to_create_immutables, avoid_print, use_build_context_synchronously
+
 import 'package:animate_do/animate_do.dart';
 import 'package:b/client/apiclient.dart';
 import 'package:b/navbar/navbar.dart';
 import 'package:b/page/registerpage.dart';
 import 'package:dio/dio.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-
 class LoginPage extends StatefulWidget {
-  const LoginPage({Key? key}) : super(key: key);
+  const LoginPage({super.key});
 
   @override
   State<LoginPage> createState() => _LoginPageState();
@@ -26,7 +26,6 @@ class _LoginPageState extends State<LoginPage> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     client = ApiClient(dio);
   }
@@ -46,7 +45,7 @@ class _LoginPageState extends State<LoginPage> {
       });
 
       Navigator.of(context)
-          .push(MaterialPageRoute(builder: (context) => NavigationMenu()))
+          .push(MaterialPageRoute(builder: (context) => const NavigationMenu()))
           .then((value) => (value));
     } on DioException catch (e) {
       if (e.response != null) {
@@ -93,17 +92,17 @@ class _LoginPageState extends State<LoginPage> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
-            SizedBox(
+            const SizedBox(
               height: 50,
             ),
             Padding(
-              padding: EdgeInsets.all(20),
+              padding: const EdgeInsets.all(20),
               child: Center(
                 child: Column(
                   children: <Widget>[
                     FadeInDown(
-                        duration: Duration(milliseconds: 1400),
-                        child: Text(
+                        duration: const Duration(milliseconds: 1400),
+                        child: const Text(
                           "Sistem Perizinan",
                           style: TextStyle(
                               color: Colors.white,
@@ -111,8 +110,8 @@ class _LoginPageState extends State<LoginPage> {
                               fontWeight: FontWeight.w700),
                         )),
                     FadeInDown(
-                        duration: Duration(milliseconds: 1200),
-                        child: Text(
+                        duration: const Duration(milliseconds: 1200),
+                        child: const Text(
                           "Dinas PTSP",
                           style: TextStyle(
                               color: Colors.white,
@@ -120,8 +119,8 @@ class _LoginPageState extends State<LoginPage> {
                               fontWeight: FontWeight.w700),
                         )),
                     FadeInDown(
-                        duration: Duration(milliseconds: 1000),
-                        child: Text(
+                        duration: const Duration(milliseconds: 1000),
+                        child: const Text(
                           "Bone Bolango",
                           style: TextStyle(
                               color: Colors.white,
@@ -132,39 +131,39 @@ class _LoginPageState extends State<LoginPage> {
                 ),
               ),
             ),
-            SizedBox(height: 10),
+            const SizedBox(height: 10),
             Expanded(
               child: Container(
-                decoration: BoxDecoration(
+                decoration: const BoxDecoration(
                   color: Colors.white,
                   borderRadius: BorderRadius.only(
                       topLeft: Radius.circular(18),
                       topRight: Radius.circular(18)),
                 ),
                 child: Padding(
-                  padding: EdgeInsets.all(30),
+                  padding: const EdgeInsets.all(30),
                   child: Column(
                     children: <Widget>[
                       FadeInUp(
-                          duration: Duration(milliseconds: 1600),
-                          child: Text(
+                          duration: const Duration(milliseconds: 1600),
+                          child: const Text(
                             "Login",
                             style: TextStyle(
                                 color: Colors.grey,
                                 fontSize: 35,
                                 fontWeight: FontWeight.w500),
                           )),
-                      SizedBox(
+                      const SizedBox(
                         height: 20,
                       ),
                       FadeInUp(
-                          duration: Duration(milliseconds: 1400),
+                          duration: const Duration(milliseconds: 1400),
                           child: Container(
                             decoration: BoxDecoration(
                                 color: Colors.white,
                                 borderRadius: BorderRadius.circular(10),
                                 boxShadow: [
-                                  BoxShadow(
+                                  const BoxShadow(
                                       color: Color.fromRGBO(3, 165, 252, .3),
                                       blurRadius: 20,
                                       offset: Offset(0, 10))
@@ -172,7 +171,7 @@ class _LoginPageState extends State<LoginPage> {
                             child: Column(
                               children: <Widget>[
                                 Container(
-                                  padding: EdgeInsets.all(10),
+                                  padding: const EdgeInsets.all(10),
                                   decoration: BoxDecoration(
                                       border: Border(
                                           bottom: BorderSide(
@@ -181,14 +180,14 @@ class _LoginPageState extends State<LoginPage> {
                                     decoration: InputDecoration(
                                         hintText: "Username",
                                         hintStyle:
-                                            TextStyle(color: Colors.grey),
+                                            const TextStyle(color: Colors.grey),
                                         border: InputBorder.none,
                                         errorText: usernameError),
                                     controller: usernameController,
                                   ),
                                 ),
                                 Container(
-                                  padding: EdgeInsets.all(10),
+                                  padding: const EdgeInsets.all(10),
                                   decoration: BoxDecoration(
                                       border: Border(
                                           bottom: BorderSide(
@@ -198,7 +197,7 @@ class _LoginPageState extends State<LoginPage> {
                                     decoration: InputDecoration(
                                         hintText: "Password",
                                         hintStyle:
-                                            TextStyle(color: Colors.grey),
+                                            const TextStyle(color: Colors.grey),
                                         border: InputBorder.none,
                                         errorText: passwordError),
                                     controller: passwordController,
@@ -207,11 +206,11 @@ class _LoginPageState extends State<LoginPage> {
                               ],
                             ),
                           )),
-                      SizedBox(
+                      const SizedBox(
                         height: 30,
                       ),
                       FadeInUp(
-                          duration: Duration(milliseconds: 1600),
+                          duration: const Duration(milliseconds: 1600),
                           child: MaterialButton(
                             onPressed: () {
                               login();
@@ -224,7 +223,7 @@ class _LoginPageState extends State<LoginPage> {
                             ),
                             // decoration: BoxDecoration(
                             // ),
-                            child: Center(
+                            child: const Center(
                               child: Text(
                                 "Masuk",
                                 style: TextStyle(
@@ -233,32 +232,32 @@ class _LoginPageState extends State<LoginPage> {
                               ),
                             ),
                           )),
-                      SizedBox(
+                      const SizedBox(
                         height: 30,
                       ),
                       FadeInUp(
-                          duration: Duration(milliseconds: 1700),
-                          child: Text(
+                          duration: const Duration(milliseconds: 1700),
+                          child: const Text(
                             "Belum punya akun?",
                             style: TextStyle(color: Colors.grey),
                           )),
-                      SizedBox(
+                      const SizedBox(
                         height: 1,
                       ),
                       Row(
                         children: <Widget>[
                           Expanded(
                             child: FadeInUp(
-                                duration: Duration(milliseconds: 1700),
+                                duration: const Duration(milliseconds: 1700),
                                 child: TextButton(
                                     onPressed: () {
                                       Navigator.of(context)
                                           .push(MaterialPageRoute(
                                               builder: (context) =>
-                                                  RegisterPage()))
+                                                  const RegisterPage()))
                                           .then((value) => (value));
                                     },
-                                    child: Text("Daftar Sekarang",
+                                    child: const Text("Daftar Sekarang",
                                         style: TextStyle(
                                             color: Colors.lightBlue)))),
                           )
