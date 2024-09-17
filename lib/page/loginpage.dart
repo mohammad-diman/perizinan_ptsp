@@ -1,11 +1,13 @@
 // ignore_for_file: prefer_const_literals_to_create_immutables, avoid_print, use_build_context_synchronously
 
 import 'package:animate_do/animate_do.dart';
-import 'package:b/client/apiclient.dart';
+import 'package:b/exception/login_exception.dart';
 import 'package:b/navbar/navbar.dart';
 import 'package:b/page/registerpage.dart';
-import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+
+
+import '../client/service/auth_service.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -15,67 +17,52 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
-  TextEditingController usernameController = TextEditingController();
-  TextEditingController passwordController = TextEditingController();
-
-  final Dio dio = Dio();
-  late ApiClient client;
+  final usernameController = TextEditingController();
+  final passwordController = TextEditingController();
+  final AuthService _authService = AuthService.getInstance();
 
   String? usernameError;
   String? passwordError;
 
-  @override
-  void initState() {
-    super.initState();
-    client = ApiClient(dio);
-  }
+  String? errorMeesage;
 
-  Future<void> login() async {
-    final username = usernameController.text;
-    final password = passwordController.text;
-
+  Future<void> _login() async {
     try {
-      final response = await client.login(username, password);
-
-      print("Token: ${response.token}");
-
+       bool isAuthenticate = await _authService.login(
+          usernameController.text,
+          passwordController.text,
+       );
+       if (isAuthenticate) {
+         Navigator.of(context)
+             .push(MaterialPageRoute(builder: (context) => const NavigationMenu()))
+             .then((value) => (value));
+       }
+    } on LoginException catch (e) {
       setState(() {
+        errorMeesage = null;
         usernameError = null;
         passwordError = null;
       });
 
-      Navigator.of(context)
-          .push(MaterialPageRoute(builder: (context) => const NavigationMenu()))
-          .then((value) => (value));
-    } on DioException catch (e) {
-      if (e.response != null) {
-        final errorData = e.response?.data;
-
-        if (errorData is Map<String, dynamic> &&
-            errorData.containsKey('errors')) {
-          final errors = errorData['errors'];
+      e.errorsMessage.forEach((field, message) {
+        if (field == "username") {
           setState(() {
-            usernameError = null;
-            passwordError = null;
+            usernameError = message.join(',');
           });
-
-          errors.forEach((field, messeage) {
-            if (field == "username") {
-              setState(() {
-                usernameError = messeage.join(',');
-              });
-            } else if (field == "password") {
-              setState(() {
-                passwordError = messeage.join(',');
-              });
-            }
+        } else if (field == "password") {
+          setState(() {
+            passwordError = message.join(',');
+          });
+        } else if (field == 'error') {
+          setState(() {
+            errorMeesage = message;
           });
         }
-      } else {
-        print("Login Gagal: $e");
-      }
+      });
     }
   }
+
+
 
   @override
   Widget build(BuildContext context) {
@@ -170,6 +157,16 @@ class _LoginPageState extends State<LoginPage> {
                                 ]),
                             child: Column(
                               children: <Widget>[
+                                SizedBox(height: 20,),
+                                FadeInUp(
+                                    duration: const Duration(milliseconds: 1600),
+                                    child: Text(
+                                      errorMeesage??"",
+                                      style: const TextStyle(
+                                          color: Colors.red,
+                                          fontSize: 14,
+                                          fontWeight: FontWeight.w500),
+                                    )),
                                 Container(
                                   padding: const EdgeInsets.all(10),
                                   decoration: BoxDecoration(
@@ -181,7 +178,7 @@ class _LoginPageState extends State<LoginPage> {
                                         hintText: "Username",
                                         hintStyle:
                                             const TextStyle(color: Colors.grey),
-                                        border: InputBorder.none,
+                                            border: InputBorder.none,
                                         errorText: usernameError),
                                     controller: usernameController,
                                   ),
@@ -198,7 +195,7 @@ class _LoginPageState extends State<LoginPage> {
                                         hintText: "Password",
                                         hintStyle:
                                             const TextStyle(color: Colors.grey),
-                                        border: InputBorder.none,
+                                            border: InputBorder.none,
                                         errorText: passwordError),
                                     controller: passwordController,
                                   ),
@@ -213,7 +210,7 @@ class _LoginPageState extends State<LoginPage> {
                           duration: const Duration(milliseconds: 1600),
                           child: MaterialButton(
                             onPressed: () {
-                              login();
+                              _login();
                             },
                             height: 50,
                             // margin: EdgeInsets.symmetric(horizontal: 50),

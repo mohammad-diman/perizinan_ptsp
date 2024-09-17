@@ -1,12 +1,44 @@
 // ignore_for_file: prefer_const_literals_to_create_immutables
 
 import 'package:animate_do/animate_do.dart';
+import 'package:b/client/service/auth_service.dart';
+import 'package:b/client/token_manager.dart';
 import 'package:b/navbar/navbar.dart';
 import 'package:b/page/loginpage.dart';
 import 'package:flutter/material.dart';
 
-class RegisterPage extends StatelessWidget {
+class RegisterPage extends StatefulWidget {
   const RegisterPage({super.key});
+
+  @override
+  State<RegisterPage> createState() => _RegisterPageState();
+}
+
+class _RegisterPageState extends State<RegisterPage> {
+  final usernameController = TextEditingController();
+  final passwordController = TextEditingController();
+  final konfirmasi_passwordController = TextEditingController();
+  final _authService = AuthService.getInstance();
+  final _tokenManager = TokenManager();
+
+  Future<void> _register() async {
+    try {
+      // String token = await _authService.register(
+      //   usernameController.text,
+      //   passwordController.text,
+      //   konfirmasi_passwordController.text,
+      // );
+      //
+      // await _tokenManager.saveToken(token);
+      //
+      // Navigator.pushReplacementNamed(context, '/LoginPage');
+    } catch (e) {
+      print('Registrasi gagal: $e');
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text('Gagal membuat akun'))
+      );
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -138,10 +170,7 @@ class RegisterPage extends StatelessWidget {
                           duration: const Duration(milliseconds: 1600),
                           child: MaterialButton(
                             onPressed: () {
-                              Navigator.of(context)
-                                  .push(MaterialPageRoute(
-                                      builder: (context) => const LoginPage()))
-                                  .then((value) => (value));
+                              _register();
                             },
                             height: 50,
                             // margin: EdgeInsets.symmetric(horizontal: 50),

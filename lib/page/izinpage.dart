@@ -1,11 +1,13 @@
-import 'package:animate_do/animate_do.dart';
-import 'package:b/form/card_form.dart';
-import 'package:b/form/jenis_surat.dart';
+
+import 'package:b/page/izinbaru_page.dart';
 import 'package:flutter/material.dart';
 import 'package:iconsax/iconsax.dart';
+import 'package:provider/provider.dart';
+
+import '../model/item_models.dart';
 
 class IzinPage extends StatefulWidget {
-  const IzinPage({super.key});
+  const IzinPage({super.key, required List<String> izinItems});
 
   @override
   State<IzinPage> createState() => _IzinPageState();
@@ -14,6 +16,8 @@ class IzinPage extends StatefulWidget {
 class _IzinPageState extends State<IzinPage>
     with SingleTickerProviderStateMixin {
   late AnimationController _controller;
+
+
 
   @override
   void initState() {
@@ -38,9 +42,12 @@ class _IzinPageState extends State<IzinPage>
     }
   }
 
+
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
+
+    final List<String> izinItems = ModalRoute.of(context)!.settings.arguments as List<String>? ?? [];
 
     return Scaffold(
       appBar: AppBar(
@@ -53,35 +60,65 @@ class _IzinPageState extends State<IzinPage>
         backgroundColor: Colors.blue.shade900,
       ),
       backgroundColor: Colors.white70,
-      body: SizedBox(
-        width: size.width,
-        height: size.height,
-        child: SingleChildScrollView(
-          physics: const BouncingScrollPhysics(),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              const SizedBox(
-                height: 5,
-              ),
-              FadeInUp(
-                duration: const Duration(milliseconds: 1000),
-                child: const Center(
-                  child: SizedBox(
-                    height: 1000,
-                    child: CardForm(),
+      body: Consumer<ItemModel>(
+        builder: (context, itemModel, child) {
+          return itemModel.items.isNotEmpty
+              ? ListView.builder(
+            itemCount: itemModel.items.length,
+            itemBuilder: (context, index) {
+              return Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
+                child: Card(
+                  color: Colors.white,
+                  elevation: 4.0,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(10.0),
+                  ),
+                  child: Column(
+                    children: [
+                      ListTile(
+                        contentPadding: EdgeInsets.all(16.0),
+                        title: Text(
+                          itemModel.items[index],
+                          style: TextStyle(fontSize: 18.0),
+                        ),
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: [
+                          TextButton(
+                            onPressed: () {
+                              _editItem(context, itemModel, index);
+                            },
+                            child: Text('Edit', style: TextStyle(color: Colors.black),),
+                          ),
+                          TextButton(
+                            onPressed: () {
+                              itemModel.removeItem(index);
+                            },
+                            child: Text('Hapus', style: TextStyle(color: Colors.black),),
+                          ),
+                        ],
+                      ),
+                    ],
                   ),
                 ),
-              ),
-            ],
-          ),
-        ),
+              );
+            },
+          )
+        : Center(
+            child: Text('Anda belum membuat surat.'),
+          );
+        },
       ),
+
+      
+      
       floatingActionButton: FloatingActionButton(
         onPressed: ()  {
             Navigator.of(context)
             .push(MaterialPageRoute(
-            builder: (context) => const JenisSurat()))
+            builder: (context) => const IzinbaruPage()))
             .then((value) => (value));
       },
         tooltip: 'Buat Izin Baru',
@@ -102,4 +139,39 @@ class _IzinPageState extends State<IzinPage>
       ),
     );
   }
+
+  void _editItem(BuildContext context, ItemModel itemModel, int index) {
+    final TextEditingController _editController = TextEditingController(text: itemModel.items[index]);
+
+    showDialog(
+      context: context,
+      builder: (context) {
+        return AlertDialog(
+          title: Text('Edit Surat', style: TextStyle(color: Colors.black),),
+          backgroundColor: Colors.white,
+          shadowColor: Colors.black,
+          content: TextField(
+            controller: _editController,
+            decoration: InputDecoration(hintText: 'Kalo bken surat lia bae2 aa.',),
+          ),
+          actions: [
+            TextButton(
+              onPressed: () {
+                itemModel.updateItem(index, _editController.text);
+                Navigator.of(context).pop();
+              },
+              child: Text('Simpan', style: TextStyle(color: Colors.black),),
+            ),
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+              child: Text('Batal', style: TextStyle(color: Colors.black),),
+            ),
+          ],
+        );
+      },
+    );
+  }
+
 }

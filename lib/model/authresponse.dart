@@ -10,12 +10,14 @@ class AuthResponse {
   final String? tokentype;
   final int? expiredAt;
   final Object? errors;
+  final String? error;
 
   AuthResponse({
     required this.token,
     required this.tokentype,
     required this.expiredAt,
     required this.errors,
+    required this.error,
   });
 
   factory AuthResponse.fromJson(Map<String, dynamic> json) => AuthResponse(
@@ -23,6 +25,7 @@ class AuthResponse {
         tokentype: json["token_type"],
         expiredAt: json["expires_in"],
         errors: json["errors"],
+        error: json["error"],
       );
 
   Map<String, dynamic> toJson() => {
@@ -30,5 +33,6 @@ class AuthResponse {
         "tokentype": tokentype,
         "expiredAt": expiredAt,
         "errors": errors.toString(),
+        "error": error,
       };
 }
