@@ -1,10 +1,14 @@
 // ignore_for_file: prefer_const_literals_to_create_immutables, avoid_print, use_build_context_synchronously
 
+import 'dart:ui';
+
 import 'package:animate_do/animate_do.dart';
 import 'package:b/exception/login_exception.dart';
 import 'package:b/navbar/navbar.dart';
 import 'package:b/page/registerpage.dart';
 import 'package:flutter/material.dart';
+import 'package:iconsax/iconsax.dart';
+import 'package:lib/widgets/loading_box.dart';
 
 
 import '../client/service/auth_service.dart';
@@ -25,6 +29,7 @@ class _LoginPageState extends State<LoginPage> {
   String? passwordError;
 
   String? errorMeesage;
+
 
   Future<void> _login() async {
     try {
@@ -157,7 +162,7 @@ class _LoginPageState extends State<LoginPage> {
                                 ]),
                             child: Column(
                               children: <Widget>[
-                                SizedBox(height: 20,),
+                                const SizedBox(height: 20,),
                                 FadeInUp(
                                     duration: const Duration(milliseconds: 1600),
                                     child: Text(
@@ -175,6 +180,7 @@ class _LoginPageState extends State<LoginPage> {
                                               color: Colors.grey.shade200))),
                                   child: TextFormField(
                                     decoration: InputDecoration(
+                                        icon: const Icon(Iconsax.user),
                                         hintText: "Username",
                                         hintStyle:
                                             const TextStyle(color: Colors.grey),
@@ -192,6 +198,7 @@ class _LoginPageState extends State<LoginPage> {
                                   child: TextFormField(
                                     obscureText: true,
                                     decoration: InputDecoration(
+                                        icon: Icon(Iconsax.lock),
                                         hintText: "Password",
                                         hintStyle:
                                             const TextStyle(color: Colors.grey),
@@ -257,7 +264,7 @@ class _LoginPageState extends State<LoginPage> {
                                     child: const Text("Daftar Sekarang",
                                         style: TextStyle(
                                             color: Colors.lightBlue)))),
-                          )
+                          ),
                         ],
                       )
                     ],

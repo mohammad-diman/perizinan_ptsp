@@ -11,5 +11,12 @@ abstract class ApiClient {
 
   @POST("/auth/login")
   Future<AuthResponse> login(
-      @Field("username") String username, @Field("password") String password);
+      @Field("username") String username,
+      @Field("password") String password);
+
+  @POST("/auth/register")
+  Future<AuthResponse> register(
+      @Field("username") String username,
+      @Field("password") String password,
+      @Field("konfirmasi_password") String konfirmasi_password);
 }

@@ -19,8 +19,6 @@ class _JenisSuratState extends State<JenisSurat> {
   List<String> _allItems = List.generate(176, (index) => 'Surat Penelitian Mahasiswa $index');
   List<String> _filteredItems = [];
 
-
-
   @override
   void initState() {
     super.initState();

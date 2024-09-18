@@ -3,9 +3,11 @@
 import 'package:animate_do/animate_do.dart';
 import 'package:b/client/service/auth_service.dart';
 import 'package:b/client/token_manager.dart';
+import 'package:b/exception/register_exception.dart';
 import 'package:b/navbar/navbar.dart';
 import 'package:b/page/loginpage.dart';
 import 'package:flutter/material.dart';
+import 'package:iconsax/iconsax.dart';
 
 class RegisterPage extends StatefulWidget {
   const RegisterPage({super.key});
@@ -18,25 +20,53 @@ class _RegisterPageState extends State<RegisterPage> {
   final usernameController = TextEditingController();
   final passwordController = TextEditingController();
   final konfirmasi_passwordController = TextEditingController();
-  final _authService = AuthService.getInstance();
-  final _tokenManager = TokenManager();
+  final AuthService _authService = AuthService.getInstance();
+
+  String? usernameError;
+  String? passwordError;
+  String? konfirmasi_passwordError;
+
+  String? errorMessage;
 
   Future<void> _register() async {
     try {
-      // String token = await _authService.register(
-      //   usernameController.text,
-      //   passwordController.text,
-      //   konfirmasi_passwordController.text,
-      // );
-      //
-      // await _tokenManager.saveToken(token);
-      //
-      // Navigator.pushReplacementNamed(context, '/LoginPage');
-    } catch (e) {
-      print('Registrasi gagal: $e');
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('Gagal membuat akun'))
+      bool isAuthenticate = await _authService.register(
+        usernameController.text,
+        passwordController.text,
+        konfirmasi_passwordController.text,
       );
+      if (isAuthenticate) {
+        Navigator.of(context)
+            .push(MaterialPageRoute(builder: (context) => const NavigationMenu()))
+            .then((value) => (value));
+      }
+    } on RegisterException catch (e) {
+      setState(() {
+        errorMessage = null;
+        usernameError = null;
+        passwordError = null;
+        konfirmasi_passwordError = null;
+      });
+
+      e.errorsMessage.forEach((field, message) {
+        if (field == "username") {
+          setState(() {
+            usernameError = message.join(',');
+          });
+        } else if (field == "password") {
+          setState(() {
+            passwordError = message.join(',');
+          });
+        } else if (field == 'konfirmasi_password') {
+          setState(() {
+            konfirmasi_passwordError = message.join(',');
+          });
+        }else if (field == 'error') {
+          setState(() {
+            errorMessage = message;
+          });
+        }
+      });
     }
   }
 
@@ -122,12 +152,15 @@ class _RegisterPageState extends State<RegisterPage> {
                                       border: Border(
                                           bottom: BorderSide(
                                               color: Colors.grey.shade200))),
-                                  child: const TextField(
+                                  child: TextField(
                                     decoration: InputDecoration(
+                                        icon: const Icon(Iconsax.user),
                                         hintText: "Username",
                                         hintStyle:
-                                            TextStyle(color: Colors.grey),
-                                        border: InputBorder.none),
+                                            const TextStyle(color: Colors.grey),
+                                        border: InputBorder.none,
+                                        errorText: usernameError),
+                                    controller: usernameController,
                                   ),
                                 ),
                                 Container(
@@ -136,13 +169,16 @@ class _RegisterPageState extends State<RegisterPage> {
                                       border: Border(
                                           bottom: BorderSide(
                                               color: Colors.grey.shade200))),
-                                  child: const TextField(
+                                  child: TextField(
                                     obscureText: true,
                                     decoration: InputDecoration(
+                                      icon: const Icon(Iconsax.lock),
                                         hintText: "Password",
                                         hintStyle:
-                                            TextStyle(color: Colors.grey),
-                                        border: InputBorder.none),
+                                            const TextStyle(color: Colors.grey),
+                                        border: InputBorder.none,
+                                        errorText: passwordError),
+                                    controller: passwordController,
                                   ),
                                 ),
                                 Container(
@@ -151,13 +187,16 @@ class _RegisterPageState extends State<RegisterPage> {
                                       border: Border(
                                           bottom: BorderSide(
                                               color: Colors.grey.shade200))),
-                                  child: const TextField(
+                                  child: TextField(
                                     obscureText: true,
                                     decoration: InputDecoration(
+                                        icon: const Icon(Iconsax.lock),
                                         hintText: "Konfirmasi Password",
                                         hintStyle:
-                                            TextStyle(color: Colors.grey),
-                                        border: InputBorder.none),
+                                            const TextStyle(color: Colors.grey),
+                                        border: InputBorder.none,
+                                        errorText: konfirmasi_passwordError),
+                                    controller: konfirmasi_passwordController,
                                   ),
                                 ),
                               ],
@@ -211,7 +250,7 @@ class _RegisterPageState extends State<RegisterPage> {
                                       Navigator.of(context)
                                           .push(MaterialPageRoute(
                                               builder: (context) =>
-                                                  const NavigationMenu()))
+                                                  const LoginPage()))
                                           .then((value) => (value));
                                     },
                                     child: const Text("Login Sekarang",

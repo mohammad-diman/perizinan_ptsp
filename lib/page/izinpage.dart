@@ -75,7 +75,7 @@ class _IzinPageState extends State<IzinPage>
                     borderRadius: BorderRadius.circular(10.0),
                   ),
                   child: Column(
-                    children: [
+                    children: [ 
                       ListTile(
                         contentPadding: EdgeInsets.all(16.0),
                         title: Text(
