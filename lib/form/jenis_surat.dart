@@ -1,4 +1,6 @@
+import 'package:b/client/service/auth_service.dart';
 import 'package:b/model/item_models.dart';
+import 'package:b/model/jenis_perizinan.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -16,8 +18,12 @@ class _JenisSuratState extends State<JenisSurat> {
 
   TextEditingController _searchController = TextEditingController();
   String searchQuery = '';
-  List<String> _allItems = List.generate(176, (index) => 'Surat Penelitian Mahasiswa $index');
+  List<String> _allItems = List.generate(15, (index) => 'Izin Penelitian Mahasiswa $index');
   List<String> _filteredItems = [];
+  late AuthService apiClient;
+  bool isLoading = true;
+
+
 
   @override
   void initState() {
@@ -63,7 +69,7 @@ class _JenisSuratState extends State<JenisSurat> {
             child: TextField(
               controller: _searchController,
               decoration: InputDecoration(
-                hintText: 'Cari Surat...',
+                hintText: 'Cari Izin...',
                 border: OutlineInputBorder(borderRadius: BorderRadius.circular(18)),
                 prefixIcon: Icon(Icons.search),
               ),
@@ -99,7 +105,7 @@ class _JenisSuratState extends State<JenisSurat> {
                           style: ElevatedButton.styleFrom(
                             foregroundColor: Colors.white, backgroundColor: Colors.blue,
                           ),
-                          child: Text('Buat Surat'),
+                          child: Text('Buat Izin'),
                         ),
                       ],
                     ),

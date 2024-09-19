@@ -1,7 +1,10 @@
 import 'package:b/client/apiclient.dart';
 import 'package:b/client/token_manager.dart';
 import 'package:b/exception/login_exception.dart';
+import 'package:b/model/jenis_perizinan.dart';
+import 'package:b/model/user_dto.dart';
 import 'package:dio/dio.dart';
+import 'package:line_icons/line_icon.dart';
 
 import '../../exception/register_exception.dart';
 
@@ -71,5 +74,18 @@ class AuthService {
       }
     }
     return false;
+  }
+
+  Future<UserDto?> getCurrentUser() async {
+    String? token = await _tokenManager.getToken();
+    if (token == null) {
+      return null;
+    }
+    try {
+      final response = _client.me(token);
+      return response;
+    } on DioException catch (e) {
+      return null;
+    }
   }
 }
